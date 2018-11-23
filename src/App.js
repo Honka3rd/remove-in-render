@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = {languages:['Javascript','Java','Python','Ruby','PHP','C++','CSS','C#','C','Go','Shell','Objective C','Scala','Swift','Typescript']}
+
   render() {
+    const lanEles = this.state.languages.map((lan,index) => (
+      <tr>
+        <td>{index + 1}</td>
+        <td>{lan}</td>
+        <td><button onClick = {()=>{
+          let lans = [...this.state.languages];
+          lans.splice(index,1);
+          this.setState({languages:lans});
+        }}>Remove</button></td>
+      </tr>
+    ));
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Rank</th>
+          </tr>
+          {lanEles}
+        </table>
       </div>
     );
   }
